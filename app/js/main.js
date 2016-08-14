@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 import 'angular-ui-router';
-import 'angular-ui-bootstrap';
 
 import './templates';
 import './filters';
