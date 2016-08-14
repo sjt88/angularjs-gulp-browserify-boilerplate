@@ -1,0 +1,31 @@
+{
+  "name": "angular-gulp-browserify-boilerplate",
+  "description": "angular-gulp-browserify-boilerplate",
+  "main": "",
+  "authors": [
+    ""
+  ],
+  "license": "dunno",
+  "keywords": [
+    "express",
+    "gulp",
+    "browserify",
+    "angular",
+    "sass",
+    "karma",
+    "jasmine",
+    "protractor",
+    "boilerplate"
+  ],
+  "homepage": "\"\"",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

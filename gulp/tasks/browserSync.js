@@ -1,33 +1,26 @@
 import config      from '../config';
-import url         from 'url';
 import browserSync from 'browser-sync';
 import gulp        from 'gulp';
+import testServer from '../util/testServer';
 
 gulp.task('browserSync', function() {
-
-  const DEFAULT_FILE = 'index.html';
-  const ASSET_EXTENSION_REGEX = new RegExp(`\\b(?!\\?)\\.(${config.assetExtensions.join('|')})\\b(?!\\.)`, 'i');
-
-  browserSync.init({
-    server: {
-      baseDir: config.buildDir,
-      middleware: function(req, res, next) {
-        let fileHref = url.parse(req.url).href;
-
-        if ( !ASSET_EXTENSION_REGEX.test(fileHref) ) {
-          req.url = '/' + DEFAULT_FILE;
-        }
-
-        return next();
+  // start test server, then start browser sync
+  testServer({
+    port: config.testPort,
+    dir: config.buildDir
+  }).then(() => {
+    browserSync.init({
+      proxy: 'localhost:3002',
+    	port: config.browserPort,
+    	ui: {
+      	port: config.UIPort
+      },
+      ghostMode: {
+        links: false,
+        clicks: false,
+        scroll: false
       }
-    },
-  	port: config.browserPort,
-  	ui: {
-    	port: config.UIPort
-    },
-    ghostMode: {
-      links: false
-    }
+    });
   });
 
 });

@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 const bulk = require('bulk-require');
-const controllersModule = angular.module('app.controllers', []);
+const controllersModule = angular.module('app.controllers', ['ui.bootstrap']);
 const controllers = bulk(__dirname, ['./**/!(*index|*.spec).js']);
 
 function declare(controllerMap) {
@@ -12,7 +12,7 @@ function declare(controllerMap) {
       return;
     }
 
-    if (item.fn && typeof item.fn === 'function') {
+    if (item.fn && typeof item.fn === 'function' || Array.isArray(item.fn)) {
       controllersModule.controller(item.name, item.fn);
     } else {
       declare(item);

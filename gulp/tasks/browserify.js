@@ -16,10 +16,11 @@ import envify       from 'envify';
 import handleErrors from '../util/handleErrors';
 import bundleLogger from '../util/bundleLogger';
 import config       from '../config';
+import insert       from 'gulp-insert';
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 function buildScript(file) {
-
+  console.log('building for production: ' + global.isProd);
   const shouldCreateSourcemap = !global.isProd || config.browserify.prodSourcemap;
 
   let bundler = browserify({
@@ -42,7 +43,11 @@ function buildScript(file) {
     { name: ngAnnotate, options: {} },
     { name: 'brfs', options: {} },
     { name: bulkify, options: {} },
-    { name: envify, options: {} }
+    { name: envify,
+      options: {
+        NODE_ENV: global.isProd ? 'production' : 'development'
+      } 
+    }
   ];
 
   transforms.forEach(function(transform) {
@@ -65,6 +70,7 @@ function buildScript(file) {
         compress: { drop_console: true } // eslint-disable-line camelcase
       }))))
       .pipe(gulpif(shouldCreateSourcemap, sourcemaps.write(sourceMapLocation)))
+      .pipe(gulpif(global.isProd, insert.prepend('/* ' + config.projectName +  ' Version ' + global.version + ' */\n')))
       .pipe(gulp.dest(config.scripts.dest))
       .pipe(browserSync.stream());
   }

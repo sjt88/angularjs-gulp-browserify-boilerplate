@@ -12,7 +12,7 @@ function declare(directiveMap) {
       return;
     }
 
-    if (item.fn && typeof item.fn === 'function') {
+    if (item.fn && (typeof item.fn === 'function' || Array.isArray(item.fn))) {
       directivesModule.directive(item.name, item.fn);
     } else {
       declare(item);

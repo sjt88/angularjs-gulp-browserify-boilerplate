@@ -18,7 +18,6 @@ exports.config = {
   framework: 'jasmine2',
 
   jasmineNodeOpts: {
-    isVerbose: false,
     showColors: true,
     includeStackTrace: true,
     defaultTimeoutInterval: 30000
@@ -30,6 +29,10 @@ exports.config = {
 
   sauceUser: process.env.SAUCE_USERNAME,
 
-  sauceKey: process.env.SAUCE_ACCESS_KEY
+  sauceKey: process.env.SAUCE_ACCESS_KEY,
 
+  onPrepare: function() {
+    var SpecReporter = require('jasmine-spec-reporter'); // npm install jasmine-spec-reporter
+    jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: true}));
+  }
 };

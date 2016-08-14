@@ -2,7 +2,7 @@ function ExampleDirective() {
 
   return {
     restrict: 'EA',
-    templateUrl: 'directives/example.html',
+    templateUrl: 'directives/common/example.html',
     scope: {
       title: '@',
       message: '@clickMessage'

@@ -10,5 +10,8 @@
  */
 
 global.isProd = false;
+global.e2e = false;
+global.version = require('./package.json').version;
 
+console.log('package version: ' + version);
 require('./gulp');

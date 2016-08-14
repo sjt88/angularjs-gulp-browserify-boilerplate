@@ -12,7 +12,7 @@ function declare(serviceMap) {
       return;
     }
 
-    if (item.fn && typeof item.fn === 'function') {
+    if (item.fn && (typeof item.fn === 'function' || Array.isArray(item.fn))) {
       servicesModule.service(item.name, item.fn);
     } else {
       declare(item);

@@ -6,6 +6,7 @@ import sass         from 'gulp-sass';
 import handleErrors from '../util/handleErrors';
 import browserSync  from 'browser-sync';
 import autoprefixer from 'gulp-autoprefixer';
+import insert       from 'gulp-insert';
 
 gulp.task('styles', function () {
 
@@ -26,6 +27,7 @@ gulp.task('styles', function () {
       createSourcemap,
       sourcemaps.write( global.isProd ? './' : null ))
     )
+    .pipe(gulpif(global.isProd, insert.prepend('/* ' + config.projectName +  ' Version ' + global.version + ' */\n')))
     .pipe(gulp.dest(config.styles.dest))
     .pipe(browserSync.stream());
 

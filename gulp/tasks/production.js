@@ -2,11 +2,9 @@ import gulp        from 'gulp';
 import runSequence from 'run-sequence';
 
 gulp.task('prod', ['clean'], function(cb) {
-
   cb = cb || function() {};
 
-  global.isProd = true;
+  global.isProd = !global.e2e;
 
-  runSequence(['styles', 'images', 'fonts', 'views'], 'browserify', 'gzip', cb);
-
+  runSequence(['vendor', 'styles', 'images', 'fonts', 'views'], 'browserify', 'gzip', cb);
 });

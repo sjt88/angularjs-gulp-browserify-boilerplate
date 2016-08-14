@@ -1,4 +1,5 @@
 export default {
+  projectName: 'angular-gulp-browserify-boilerplate',
 
   browserPort: 3000,
   UIPort: 3001,
@@ -29,6 +30,11 @@ export default {
   fonts: {
     src: ['app/fonts/**/*'],
     dest: 'build/fonts'
+  },
+
+  vendor: {
+    src: 'app/vendor/**/*',
+    dest: 'build/vendor/'
   },
 
   assetExtensions: [

@@ -16,8 +16,7 @@ describe('Unit: Constants', function() {
     expect(constants).toBeDefined();
   });
 
-  it('should have an application name', function() {
-    expect(constants.appTitle).toEqual('Example Application');
+  it('should set an APP_TITLE', function() {
+    expect(constants.APP_TITLE).toBeDefined();
   });
-
 });

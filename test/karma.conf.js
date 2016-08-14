@@ -16,7 +16,7 @@ const karmaBaseConfig = {
 
   browsers: ['Chrome'],
 
-  reporters: ['progress', 'coverage'],
+  reporters: ['coverage', 'spec'],
 
   autoWatch: true,
 
@@ -29,7 +29,7 @@ const karmaBaseConfig = {
       'bulkify',
       istanbul({
         instrumenter: isparta,
-        ignore: ['**/node_modules/**', '**/test/**']
+        ignore: ['**/node_modules/**', '**/test/**', '**/vendor/**']
       })
     ]
   },

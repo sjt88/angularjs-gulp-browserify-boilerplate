@@ -12,7 +12,7 @@ function declare(filterMap) {
       return;
     }
 
-    if (item.fn && typeof item.fn === 'function') {
+    if (item.fn && (typeof item.fn === 'function' || Array.isArray(item.fn))) {
       filtersModule.filter(item.name, item.fn);
     } else {
       declare(item);

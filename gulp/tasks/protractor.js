@@ -10,8 +10,11 @@ import {
 gulp.task('webdriverUpdate', webdriver_update);
 gulp.task('webdriver', webdriver);
 
-gulp.task('protractor', ['prod', 'webdriverUpdate', 'webdriver'], function(cb) {
+gulp.task('set_e2e', function () {
+  global.e2e = true;
+});
 
+gulp.task('protractor', ['set_e2e', 'prod', 'webdriverUpdate', 'webdriver'], function(cb) {
   const testFiles = gulp.src('test/e2e/**/*.js');
 
   testServer({
